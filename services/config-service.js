@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import process from 'process';
 import BaseService from "./base-service.js";
 
+import Winreg from 'winreg';
+
 class ConfigService extends BaseService {
     
     envroiment = 'development';
@@ -15,6 +17,11 @@ class ConfigService extends BaseService {
     };
 
     fileConfig = {};
+
+    regKey = new Winreg({
+        hive: Winreg.HKLM, // veya Winreg.HKLM (LocalMachine)
+        key:  '\\Software\\RDForceServer'
+    });
 
     constructor() {
         super();
@@ -39,6 +46,19 @@ class ConfigService extends BaseService {
 
     getConfig(configKey) {
         return  process.env[configKey] ? process.env[configKey] : this.fileConfig[configKey];
+    }
+
+    async getKeyStoreConfig(configKey) {
+        return await new Promise((resoulve,reject) =>{
+            this.regKey.get(configKey, (err, item) => {
+                if (err) {
+                    console.error('KeyStore okumada hata oluştu:', err);
+                    reject(err);
+                } else {
+                    resoulve(item.value);         
+                }
+            });
+        }); 
     }
 }
 

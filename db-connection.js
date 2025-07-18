@@ -9,9 +9,9 @@ class DBConnection {
   async connect() {
 
     const configService = ServiceRegistry.getService("ConfigService");
-    const dbHost = configService.getConfig("DB_HOST");
-    const dbUser = configService.getConfig("DB_USER");
-    const dbPass = configService.getConfig("DB_PASS");
+    const dbHost = await configService.getKeyStoreConfig("DB_HOST");
+    const dbUser = await configService.getKeyStoreConfig("DB_USER");
+    const dbPass = await configService.getKeyStoreConfig("DB_PASS");
 
     if(!dbHost || !dbUser || !dbPass )
     {
