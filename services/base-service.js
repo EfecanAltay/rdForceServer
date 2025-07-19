@@ -12,7 +12,12 @@ class BaseService {
      */
     _cluster = undefined;
 
-    constructor() {
+    /**
+     * @type {boolean}
+     */
+    _isActiveDBConnection = true;
+    constructor(isActiveDBConnection = true) {
+        this._isActiveDBConnection = isActiveDBConnection;
         if (this.instance) {
             throw new Error("Cannot create multiple instances of baseService.");
         }
@@ -21,9 +26,11 @@ class BaseService {
     }
 
     async initialize() {
-        this._dbCollection = new DBConnection();
-        await this._dbCollection.initialize();
-        this._cluster = this._dbCollection.getCluster(); 
+        if(this._isActiveDBConnection){
+            this._dbCollection = new DBConnection();
+            await this._dbCollection.initialize();
+            this._cluster = this._dbCollection.getCluster(); 
+        }
     }
 
     getInstance() {

@@ -1,5 +1,6 @@
 import express from 'express';
-import Project from '../app/project.js';
+import ObjectFactory from '../factories/ObjectFactory.js';
+
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -7,7 +8,8 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/all', async (req, res) => {
-  let project = new Project();
+
+  let project = ObjectFactory.createObject("project");
   const c = await project.getAll();
   res.send(c);
 });

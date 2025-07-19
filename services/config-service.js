@@ -18,7 +18,6 @@ class ConfigService extends BaseService {
 
     fileConfig = {};
 
-
     constructor() {
         super();
         this.fileConfig = {};

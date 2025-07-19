@@ -3,7 +3,7 @@ import AppService from './services/app-service.js';
 import LoggerService from './services/logger-service.js';
 import ExceptionService from './services/exception-service.js';
 import ConfigService from './services/config-service.js';
-import Project from './app/project.js';
+import Project from './objects/app/project.js';
 import ServiceRegistry from './common/service-registry.js';
 
 const app = express();
@@ -14,7 +14,7 @@ await ServiceRegistry.registerServices([
   new ConfigService(),
   new ExceptionService(),
   new AppService(),
-  new LoggerService(),
+  new LoggerService()
 ]);
 
 const project = new Project();

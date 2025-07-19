@@ -1,4 +1,4 @@
-import BaseObject from "../common/base-object.js";
+import BaseObject from "../../common/base-object.js";
 
 class User extends BaseObject {
     
@@ -12,4 +12,4 @@ class User extends BaseObject {
     }
 }
 
-export default Project;
+export default User;
