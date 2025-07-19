@@ -18,10 +18,6 @@ class ConfigService extends BaseService {
 
     fileConfig = {};
 
-    regKey = new Winreg({
-        hive: Winreg.HKLM, // veya Winreg.HKLM (LocalMachine)
-        key:  '\\Software\\RDForceServer'
-    });
 
     constructor() {
         super();
@@ -29,6 +25,7 @@ class ConfigService extends BaseService {
     }
 
     async initialize() {
+        
         await Promise.resolve(()=>{
             dotenv.config(); // .env dosyasını yükle
             this.envroiment = process.env.NODE_ENV || 'development';
@@ -48,17 +45,25 @@ class ConfigService extends BaseService {
         return  process.env[configKey] ? process.env[configKey] : this.fileConfig[configKey];
     }
 
-    async getKeyStoreConfig(configKey) {
-        return await new Promise((resoulve,reject) =>{
-            this.regKey.get(configKey, (err, item) => {
-                if (err) {
-                    console.error('KeyStore okumada hata oluştu:', err);
-                    reject(err);
-                } else {
-                    resoulve(item.value);         
-                }
+    async getKeyStoreConfig(moduleCode, configKey) {
+        return new Promise((resoulve, reject)=>{
+            const regKey = new Winreg({
+                        hive: Winreg.HKLM, // veya Winreg.HKLM (LocalMachine)
+                        key:  `\\Software\\RDForceServer-DEV\\${moduleCode.toUpperCase()}`
             });
-        }); 
+            regKey.get(configKey, (err, item) => {
+                                    if (err) {
+                                        console.error('KeyStore okumada hata oluştu:', err);
+                                        reject(err);
+                                    } else {
+                                        resoulve(item.value);         
+                                    }
+                                });
+        });
+    }
+
+    async getKeyStoreDBConfig(moduleCode, configKey) {
+        return await this.getKeyStoreConfig(moduleCode, configKey);
     }
 }
 

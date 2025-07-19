@@ -19,13 +19,6 @@ class ExceptionService extends BaseService {
             // Loglayabilir veya sistemsel aksiyon alabilirsin
         });
     }
-
-    getCollection(collectionName) {
-        if(!this._cluster) {
-            throw new Error("Cluster is not initialized.");
-        }
-        return this._cluster.bucket('rd-force').scope('exception').collection(collectionName);
-    }
 }
 
 export default ExceptionService;

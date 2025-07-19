@@ -1,6 +1,6 @@
-import BaseObject from "../common/base-object.js";
+import BaseAppObject from "../common/base-object.js";
 
-class Project extends BaseObject {
+class Project extends BaseAppObject {
     
     Name = "";
     Description = "";
@@ -16,7 +16,7 @@ class Project extends BaseObject {
     UpdatedBy = "";
 
     constructor() {
-        super("project");
+        super("commit");
     }
 }
 

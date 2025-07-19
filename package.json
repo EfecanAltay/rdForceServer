@@ -10,7 +10,7 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --trace-deprecation app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

@@ -3,7 +3,7 @@ import ServiceRegistry from "./service-registry.js";
 import {Collection, DocumentNotFoundError} from "couchbase";
 import { randomUUID } from "crypto";
 
-class BaseAppObject {
+class BaseObject {
 
     /**
      * @type {UUID}
@@ -114,4 +114,4 @@ class BaseAppObject {
     }
 }
 
-export default BaseAppObject;
+export default BaseObject;

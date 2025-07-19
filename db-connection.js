@@ -9,15 +9,20 @@ class DBConnection {
   async connect() {
 
     const configService = ServiceRegistry.getService("ConfigService");
-    const dbHost = await configService.getKeyStoreConfig("DB_HOST");
-    const dbUser = await configService.getKeyStoreConfig("DB_USER");
-    const dbPass = await configService.getKeyStoreConfig("DB_PASS");
+    const dbHost = await configService.getKeyStoreDBConfig("app", "DB_HOST");
+    const dbUser = await configService.getKeyStoreDBConfig("app", "DB_USER");
+    const dbPass = await configService.getKeyStoreDBConfig("app", "DB_PASS");
 
     if(!dbHost || !dbUser || !dbPass )
     {
         console.error("DB Config ayarlı değil !");
         throw new Error("DB Config ayarlı değil !");
     }
+
+    console.log(dbHost)
+        console.log(dbUser)
+            console.log(dbPass)
+
     // User inputs
     const clusterConnStr = dbHost;
     console.debug("Connecting to Couchbase cluster at:", clusterConnStr);
@@ -34,16 +39,6 @@ class DBConnection {
       });
   }
 
-  async runCommandAsync(query) {
-    return await this.cluster.query(query);
-  }
-}
-
-class AppDBConnection extends DBConnection {
-  constructor() {
-    super()
-  }
-
   async initialize() {
     try {
       const configService = ServiceRegistry.getService("ConfigService");
@@ -58,6 +53,10 @@ class AppDBConnection extends DBConnection {
   getCluster() {
     return this.cluster;
   }
+
+  async runCommandAsync(query) {
+    return await this.cluster.query(query);
+  }
 }
 
-export default AppDBConnection;
+export default DBConnection;

@@ -1,4 +1,17 @@
+import DBConnection from '../db-connection.js';
+
 class BaseService {
+
+    /**
+     * @type {Collection | undefined}
+     */
+    _dbCollection = undefined;
+
+    /**
+     * @type {Cluster | undefined}
+     */
+    _cluster = undefined;
+
     constructor() {
         if (this.instance) {
             throw new Error("Cannot create multiple instances of baseService.");
@@ -8,7 +21,9 @@ class BaseService {
     }
 
     async initialize() {
-        return Promise.resolve();
+        this._dbCollection = new DBConnection();
+        await this._dbCollection.initialize();
+        this._cluster = this._dbCollection.getCluster(); 
     }
 
     getInstance() {
@@ -16,7 +31,18 @@ class BaseService {
             this.instance = this.constructor();
         }
         return this.instance;
-    }     
+    } 
+    
+    async runDBCommandAsync(query){
+        return await this._dbCollection.runCommandAsync(query);
+    }
+
+    getCollection(collectionName, scope) {
+        if(!this._cluster) {
+            throw new Error("Cluster is not initialized.");
+        }
+        return this._cluster.bucket('rd-force').scope(scope).collection(collectionName);
+    }
 }
 
 export default BaseService;
