@@ -1,4 +1,4 @@
-import BaseObject from "../../common/base-object.js";
+import BaseObject from "#shared/models/base-object.js";
 
 class Project extends BaseObject {
     

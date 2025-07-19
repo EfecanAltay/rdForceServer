@@ -1,4 +1,4 @@
-import BaseAppObject from "../../common/base-object.js";
+import BaseAppObject from "#shared/models/base-object.js";
 
 class Commit extends BaseAppObject {
     

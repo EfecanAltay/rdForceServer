@@ -10,16 +10,24 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "start": "node --trace-deprecation app.js",
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "couchbase": "^4.5.0",
     "dotenv": "^17.2.0",
+    "esm": "^3.2.25",
+    "esm-module-alias": "^2.2.1",
     "express": "^5.1.0",
+    "module-alias": "^2.2.3",
     "node": "^24.4.0",
     "path": "^0.12.7",
     "winreg": "^1.2.5",
     "winston": "^3.17.0"
+  },
+  "imports": {
+    "#app/*": "./src/domains/app/*",
+    "#sec/*": "./src/domains/sec/*",
+    "#shared/*": "./src/shared/*"
   }
 }

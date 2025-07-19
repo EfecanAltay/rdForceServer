@@ -1,4 +1,4 @@
-import DBConnection from '../db-connection.js';
+import DBConnection from '../utils/db-connection.js';
 
 class BaseService {
 

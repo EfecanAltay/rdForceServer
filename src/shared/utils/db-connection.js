@@ -1,5 +1,5 @@
 import couchbase from "couchbase";
-import ServiceRegistry from './common/service-registry.js';
+import ServiceRegistry from './service-registry.js';
 
 class DBConnection {
   constructor() {

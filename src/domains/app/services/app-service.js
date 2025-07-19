@@ -1,4 +1,4 @@
-import BaseService from "./base-service.js";
+import BaseService from "../../../shared/services/base-service.js";
 
 class AppService extends BaseService {
     

@@ -1,5 +1,5 @@
-import AppService from "../services/app-service.js";
-import ServiceRegistry from "./service-registry.js";
+import AppService from "#app/services/app-service.js";
+import ServiceRegistry from "#shared/utils/service-registry.js";
 import {Collection, DocumentNotFoundError} from "couchbase";
 import { randomUUID } from "crypto";
 
