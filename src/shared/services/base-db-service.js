@@ -19,8 +19,8 @@ class BaseDBService extends BaseService {
     _moduleCode = undefined;
     
     constructor(moduleCode) {
-        this._moduleCode = moduleCode;
         super();
+        this._moduleCode = moduleCode;
     }
 
     async initialize() {

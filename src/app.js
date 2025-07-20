@@ -16,9 +16,9 @@ const port = 3000;
 await ServiceRegistry.registerServices([
   new ConfigService(),
   new ExceptionService(),
-  new AppService(),
+  new LoggerService(),
   new SecService(),
-  new LoggerService()
+  new AppService()
 ]);
 
 const user = SecFactory.createObject("user");

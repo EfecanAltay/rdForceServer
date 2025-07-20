@@ -1,4 +1,4 @@
-import BaseDBService from "#shared/services/base-dv-service.js";
+import BaseDBService from "#shared/services/base-db-service.js";
 
 class SecService extends BaseDBService {
     
