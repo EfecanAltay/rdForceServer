@@ -45,7 +45,7 @@ const user = SecFactory.createObject("user");
 
 
 import mainRoute from './routes/main.routes.js';
-app.use('/', mainRoute);
+app.use('/api', mainRoute);
 
 app.listen(port, () => {
   console.log(`🚀 Server is running on http://localhost:${port}`);

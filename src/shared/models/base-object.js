@@ -25,7 +25,9 @@ class BaseObject {
     CreatedBy = "";
     UpdatedBy = "";
 
+    _objectName = undefined;
     constructor(moduleCode, objectName) {
+        this._objectName = objectName;
         this._service = ServiceRegistry.getServiceByModuleCode(moduleCode);
         this._collection = this._service.getCollection(objectName);
     }

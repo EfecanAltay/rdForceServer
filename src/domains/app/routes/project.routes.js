@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/all', async (req, res) => {
-
   let project = AppFactory.createObject("project");
   const c = await project.getAll();
   res.send(c);

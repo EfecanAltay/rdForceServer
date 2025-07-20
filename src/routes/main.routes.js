@@ -1,6 +1,6 @@
 import express from 'express';
-import userRoute from '../domains/sec/routes/user.routes.js';
-import projectRoute from '../domains/app/routes/project.routes.js';
+import userRoute from '#sec/routes/user.routes.js';
+import projectRoute from '#app/routes/project.routes.js';
 
 const router = express.Router();
 
