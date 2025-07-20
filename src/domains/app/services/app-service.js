@@ -1,9 +1,9 @@
-import BaseService from "../../../shared/services/base-service.js";
+import BaseDBService from "#shared/services/base-db-service.js";
 
-class AppService extends BaseService {
+class AppService extends BaseDBService {
     
     constructor() {
-        return super();
+        super("app");
     }
 
     getCollection(collectionName) {

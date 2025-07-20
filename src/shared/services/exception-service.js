@@ -3,7 +3,7 @@ import BaseService from "./base-service.js";
 class ExceptionService extends BaseService {
     
     constructor() {
-        return super();
+        super();
     }
 
     async initialize() {

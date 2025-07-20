@@ -1,11 +1,11 @@
-import BaseObject from "../../../../common/base-object.js";
+import BaseSecObject from './base-sec-object.js';
 
-class Role extends BaseObject {
+class Role extends BaseSecObject {
     
     RoleName = "";
 
     constructor() {
-        super("role");
+        super(Role.name);
     }
 }
 

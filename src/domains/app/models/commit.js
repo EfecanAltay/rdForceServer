@@ -5,7 +5,7 @@ class Commit extends BaseAppObject {
     Message = "";
 
     constructor() {
-        super("commit");
+        super("app", "commit");
     }
 }
 

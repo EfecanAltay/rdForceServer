@@ -27,6 +27,20 @@ class ServiceRegistry {
             throw new Error(`${name} Service Not Registered !`);
         return srv;
     }
+
+    static getServiceByModuleCode(moduleCode) {
+        let serviceName = "AppService";
+        switch(moduleCode.toUpperCase())
+        {
+            case "APP":
+                serviceName = "AppService";
+                break;
+            case "SEC":
+                serviceName = "SecService";
+                break;
+        }
+        return this.getService(serviceName);
+    }
 }
 
 export default ServiceRegistry;

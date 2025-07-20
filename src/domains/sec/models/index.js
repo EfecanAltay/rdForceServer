@@ -1,4 +1,4 @@
-import User from '../../../../objects/sec/user.js'
-import Role from '../../../../objects/sec/role.js'
+import User from './user.js'
+import Role from './role.js'
 
 export default { User, Role };

@@ -1,14 +1,15 @@
-import BaseObject from "../../../../common/base-object.js";
+import BaseSecObject from './base-sec-object.js';
 
-class User extends BaseObject {
+class User extends BaseSecObject {
     
     UserName = "";
     FirstName = "Noname";
     Surname = "Noname";
     DateOfBirthday = new Date();
+    AppRole = undefined;
 
     constructor() {
-        super("user");
+        super(User.name);
     }
 }
 

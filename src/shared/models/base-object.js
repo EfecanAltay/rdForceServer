@@ -18,12 +18,16 @@ class BaseObject {
     /**
     * @type {Service} collection
     */
-    _service = ServiceRegistry.getService(AppService.name);
+    _service = undefined;
 
-    _objectName = "";
-    constructor(objectName) {
-        this._objectName = objectName;
-        this._collection = this._service.getCollection(this._objectName);
+    CreatedAt = null;
+    UpdatedAt = null;
+    CreatedBy = "";
+    UpdatedBy = "";
+
+    constructor(moduleCode, objectName) {
+        this._service = ServiceRegistry.getServiceByModuleCode(moduleCode);
+        this._collection = this._service.getCollection(objectName);
     }
 
     async getAll(){

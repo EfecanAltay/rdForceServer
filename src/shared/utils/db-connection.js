@@ -2,26 +2,25 @@ import couchbase from "couchbase";
 import ServiceRegistry from './service-registry.js';
 
 class DBConnection {
-  constructor() {
+
+  _moduleCode = undefined;
+  constructor(moduleCode) {
+    this._moduleCode = moduleCode;
     this.cluster = null;
   }
 
   async connect() {
 
     const configService = ServiceRegistry.getService("ConfigService");
-    const dbHost = await configService.getKeyStoreDBConfig("app", "DB_HOST");
-    const dbUser = await configService.getKeyStoreDBConfig("app", "DB_USER");
-    const dbPass = await configService.getKeyStoreDBConfig("app", "DB_PASS");
+    const dbHost = await configService.getKeyStoreDBConfig(this._moduleCode, "DB_HOST");
+    const dbUser = await configService.getKeyStoreDBConfig(this._moduleCode, "DB_USER");
+    const dbPass = await configService.getKeyStoreDBConfig(this._moduleCode, "DB_PASS");
 
     if(!dbHost || !dbUser || !dbPass )
     {
-        console.error("DB Config ayarlı değil !");
-        throw new Error("DB Config ayarlı değil !");
+        console.error(`${this._moduleCode} DB Config ayarlı değil !`);
+        throw new Error(`${this._moduleCode} DB Config ayarlı değil !`);
     }
-
-    console.log(dbHost)
-        console.log(dbUser)
-            console.log(dbPass)
 
     // User inputs
     const clusterConnStr = dbHost;

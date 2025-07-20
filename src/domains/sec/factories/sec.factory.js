@@ -1,4 +1,4 @@
-import SecObjects from "../objects/sec/index.js";
+import SecObjects from "../models/index.js";
 
 class SecFactory {
   static createObject(ObjectName) {

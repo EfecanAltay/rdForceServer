@@ -6,6 +6,9 @@ import ExceptionService from './shared/services/exception-service.js';
 import ConfigService from './shared/services/config-service.js';
 import ServiceRegistry from './shared/utils/service-registry.js';
 
+import SecFactory from '#sec/factories/sec.factory.js';
+import SecService from '#sec/services/SecService.js';
+
 const app = express();
 const port = 3000;
 
@@ -14,8 +17,11 @@ await ServiceRegistry.registerServices([
   new ConfigService(),
   new ExceptionService(),
   new AppService(),
+  new SecService(),
   new LoggerService()
 ]);
+
+const user = SecFactory.createObject("user");
 
 // const project = new AppModels.Project();
 // project.Name = "New Project";

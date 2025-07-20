@@ -6,7 +6,7 @@ class LoggerService extends BaseService {
     
     _logger = null; 
     constructor() {
-        return super();
+        super();
     }
 
     async initialize() {
