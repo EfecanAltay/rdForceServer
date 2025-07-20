@@ -36,7 +36,6 @@ class BaseObject {
         try {
             console.log("Get All projects...");
             const result = await this._service.runDBCommandAsync("Select * from `rd-force`.app."+this._objectName);
-            console.log(result);
             const objects = [];
             result.rows.forEach(row => {
                 const object = row[this._objectName];
